@@ -1,7 +1,7 @@
 {
-  "name": "library-management-system-master",
+  "name": "campus entry control system",
   "version": "1.0.0",
-  "description": "A simple online library management system built with MongodDB, Express.js and Node.js. [Click here](https://demo-library-system.herokuapp.com/) to see the application",
+  "description": "A simple online entry exit management system built with MongodDB, Express.js and Node.js",
   "main": "app.js",
   "dependencies": {
     "body-parser": "^1.19.0",
