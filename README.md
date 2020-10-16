@@ -30,7 +30,7 @@ All data in this application stored in MongoDB. Make sure MongoDB installed in y
 
 ## Functionalitites
 
-Whole app is divided into three modules.
+Whole app is divided into two modules.
 
 * Admin
 * User
