@@ -104,11 +104,11 @@ exports.getFlagUser = async (req, res, next) => {
         if(user.campusPresence) {
             user.campusPresence = false;
             await user.save();
-            req.flash("success", `An user named ${user.firstName} ${user.lastName} is just exited!`);
+            req.flash("warning", `A user named ${user.firstName} ${user.lastName} just exited!`);
         } else {
             user.campusPresence = true;
             await user.save();
-            req.flash("warning", `An user named ${user.firstName} ${user.lastName} just entered!`);
+            req.flash("success", `A user named ${user.firstName} ${user.lastName} just entered!`);
         }
 
         res.redirect("/admin/users/1");

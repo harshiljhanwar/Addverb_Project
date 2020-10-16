@@ -3,8 +3,6 @@ const express = require("express"),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
     passport = require("passport"),
-    multer = require('multer'),
-    uid = require('uid');
     path = require("path"),
     sanitizer = require("express-sanitizer"),
     methodOverride = require("method-override"),
@@ -16,6 +14,7 @@ const express = require("express"),
     adminRoutes = require("./routes/admin"),
     authRoutes = require("./routes/auth"),
     middleware = require("./middleware"),
+    deleteImage = require('./utils/delete_image');
 
 mongoose.connect('mongodb://localhost:27017/eems', {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useFindAndModify', false);
@@ -44,30 +43,7 @@ passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// configure image file storage
-const fileStorage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'images');
-    },
-    filename: (req, file, cb) => {
-        cb(null, `${uid()}-${file.originalname}`);
-    }
-});
-
-const filefilter = (req, file, cb) => {
-    if(
-        file.mimetype === 'image/png' ||
-        file.mimetype === 'image/jpg' ||
-        file.mimetype === 'image/jpeg'
-    ) {
-        cb(null, true);
-    } else {
-        cb(null, false);
-    }
-};
-
-app.use(multer({ storage: fileStorage, fileFilter: filefilter }).single('image'));
-app.use('/images', express.static(path.join(__dirname, 'images')));
+ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use((req, res, next) => {
    res.locals.currentUser   = req.user;
@@ -82,15 +58,7 @@ app.use((req, res, next) => {
 app.use(userRoutes);
 app.use(adminRoutes);
 app.use(authRoutes);
-
-function deleteImage(imagePath, next) {
-    fs.unlink(imagePath, (err) => {
-      if (err) {
-         console.log("Failed to delete image at delete profile");
-         return next(err);
-      }
-  });
-}
+app.use(deleteImage)
 
 app.listen(3000, () =>{
    console.log(`LMS server is running at: http://localhost:3000`); 

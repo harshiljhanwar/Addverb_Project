@@ -1,12 +1,4 @@
-/*button {
-  background-color: black !important;
-}
-
-.btn {
-  background-color: black !important;
-}
-*/
-.btn-group-xs > .btn, .btn-xs {
+/.btn-group-xs > .btn, .btn-xs {
   padding: .40rem .40rem;
   font-size: .8rem;
   line-height: .5;
