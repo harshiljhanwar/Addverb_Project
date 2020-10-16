@@ -1,0 +1,92 @@
+<%- include('../partials/header') %>
+
+    
+<!--NAVIGATION BAR FOR ADMIN-->
+<%- include('../partials/adminNav') %>
+
+
+<header id="main-header" class="py-2 bg-primary text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1><i class="fa fa-user"></i> Profile</h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PROFILE DETAILS -->
+<section id="profile" class="py-4 mb-4 bg-faded">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <a href="/admin" class="btn btn-secondary btn-block">
+          <i class="fa fa-arrow-left"></i> Back To Dashboard
+        </a>
+      </div>
+      
+       <div class="col">
+        <a href="/admin/delete-profile" class="btn btn-danger btn-block" data-toggle="modal" data-target="#deleteProfileModal">
+          <i class="fa fa-close"></i> Delete Account
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<!-- PROFILE EDIT -->
+<section id="profile-edit">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 mx-auto">
+        <div class="card p-3">
+          <div class="card-header">
+            <h4>Admin Info</h4>
+          </div>
+          <div class="card-block">
+            <p>User name : <%=currentUser.username%></p>
+            <p>Email : <%=currentUser.email%></p>
+          </div>
+        </div>
+      </div>
+</section>
+
+<!--Delete Profile Modal-->
+<div class="modal fade" id="deleteProfileModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="deleteProfileModalLabel">
+          Once you press yes, you will lose the admin facility permanently. Are you sure?
+        </h5>
+        <button class="close" data-dismiss="modal" ><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <form action="/admin/delete-profile?_method=DELETE" method="POST">
+          
+          <input type="submit" value="Yes" class="btn btn-danger btn-block m-1">
+          
+        </form>
+        <input type="button" value="No" data-dismiss="modal" class="btn btn-success btn-block m-1">
+      </div> 
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+  $('#confirmPassword').on('keyup', function () {
+    if ($(this).val() == $('#password').val()) {
+      $('#message').html('Matched').css('color', 'green');
+      $('#button').removeClass("d-none")
+    } 
+    else{
+      $('#message').html('Not matched!').css('color', 'red');
+      $('#button').addClass("d-none");
+    }
+});
+</script>
+
+<%- include('../partials/footer') %>
