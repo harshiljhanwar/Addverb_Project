@@ -20,21 +20,13 @@ const userSchema = new mongoose.Schema({
    }, 
    password : String, 
    joined : {type: Date, default: Date.now()},
-   bookIssueInfo : [{
-      book_info : {
-         id : {
-            type : mongoose.Schema.Types.ObjectId,
-            ref : "Issue",
-         }, 
-      },
-   }],
    gender : String,
    address : String,
    image : {
       type: String,
       default: "",
    },
-   violationFlag : {type : Boolean, default : false},
+   campusPresence : {type : Boolean, default : false},
    fines : {type : Number, default: 0},
    isAdmin : {type : Boolean, default : false},
 });

@@ -1,23 +1,14 @@
 const express = require("express"),
       router = express.Router(),
       passport = require("passport"),
-      // fs = require("fs"),
-      // path = require("path"),
       middleware = require("../middleware"),
       User = require("../models/user");
-      // Book = require("../models/book"),
-      // Activity = require("../models/activity"),
-      // Issue = require("../models/issue"),
-      // Comment = require("../models/comment");
 
 // importing controller
 const campusControl = require('../controllers/admin');
 
 //admin -> dashboard
 router.get("/admin", middleware.isAdmin, campusControl.getDashboard);
-
-//admin -> find activities of all users on admin dashboard
-router.post("/admin", middleware.isAdmin, campusControl.postDashboard);
 
 //admin -> delete profile
 router.delete("/admin/delete-profile", middleware.isAdmin, campusControl.deleteAdminProfile);

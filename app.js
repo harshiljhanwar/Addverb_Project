@@ -11,21 +11,14 @@ const express = require("express"),
     localStrategy = require("passport-local"),
     fs = require("fs"),
     flash = require("connect-flash"),
-    //resize = require("./resize"),
     User = require("./models/user"),
-    Activity = require("./models/activity"),
-    //Issue = require("./models/issue"),
-    //Comment = require("./models/comment"),
     userRoutes = require("./routes/users"),
     adminRoutes = require("./routes/admin"),
-    //bookRoutes = require("./routes/books"),
     authRoutes = require("./routes/auth"),
     middleware = require("./middleware"),
-    //Seed = require('./seed');
 
- //Seed(1000);
-
-mongoose.connect('mongodb://localhost:27017/lms', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost:27017/eems', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.set('useFindAndModify', false);
  
 // app config
 app.set("view engine", "ejs");
@@ -33,11 +26,6 @@ app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(sanitizer());
-
-// db config
-
-
-//mongoose.set('useFindAndModify', false);
 
 
 //PASSPORT CONFIGURATION
@@ -93,7 +81,6 @@ app.use((req, res, next) => {
 //Routes
 app.use(userRoutes);
 app.use(adminRoutes);
-//app.use(bookRoutes);
 app.use(authRoutes);
 
 function deleteImage(imagePath, next) {

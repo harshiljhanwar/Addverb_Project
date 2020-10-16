@@ -71,20 +71,14 @@
                 <td><%=user.email%></td>
                  <td><%=user.gender%></td>
                 <td><%=user.joined.toDateString()%></td>
-                <td><%=user.violationFlag%></td>
+                <td><%=user.campusPresence%></td>
                 <td>$<%=user.fines%></td>
                 <td>
-                  <!-- <%if(user.bookIssueInfo.length > 0) { %>
-                  <a href="/admin/users/delete/<%=user._id%>" title="Are you sure to delete this user?" class="btn btn-sm btn-danger">
-                    <i class="fa fa-trash"></i>
-                  </a>
-                <%  } else { %> -->
                   <a href="/admin/users/delete/<%=user._id%>" title="Delete User" class="btn btn-sm btn-danger">
                     <i class="fa fa-trash"></i>
                   </a>
-                <!-- <% } %> -->
                 
-                <% if(user.violationFlag) { %> 
+                <% if(user.campusPresence) { %> 
                     <a href="/admin/users/flagged/<%=user._id%>" title="Exit User" class="btn btn-sm btn-success">
                       <i class="fa fa-flag"></i>
                     </a>

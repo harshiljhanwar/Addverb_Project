@@ -16,13 +16,8 @@
               <li class="list-group-item">Username :   <%=user.username%></li>
               <li class="list-group-item">Joined :    <%=user.joined.toDateString()%></li>
               <li class="list-group-item">Email :  <%=user.email%> </li>
-              <li class="list-group-item">Issued books :
-                <% issues.forEach(issue => { %>
-                    <%=issue.book_info.title + ", "%>
-                <% }) %> 
-              </li>
               <li class="list-group-item">Address :  <%=user.address%></li>
-              <li class="list-group-item text-danger font-weight-bold">In Campus : <%=user.violationFlag%> </li>
+              <li class="list-group-item text-danger font-weight-bold">In Campus : <%=user.campusPresence%> </li>
               <li class="list-group-item">Due Fines :   $<%=user.fines%></li>
             </ul>
         </div>
