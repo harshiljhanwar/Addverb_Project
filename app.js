@@ -13,8 +13,8 @@ const express = require("express"),
     userRoutes = require("./routes/users"),
     adminRoutes = require("./routes/admin"),
     authRoutes = require("./routes/auth"),
-    middleware = require("./middleware"),
-    deleteImage = require('./utils/delete_image');
+    middleware = require("./middleware");
+    //deleteImage = require('./utils/delete_image');
 
 mongoose.connect('mongodb://localhost:27017/eems', {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useFindAndModify', false);
@@ -30,7 +30,7 @@ app.use(sanitizer());
 //PASSPORT CONFIGURATION
 
 app.use(require("express-session") ({ //must be declared before passport session and initialize method
-    secret : "Wubba lubba dub dub",
+    secret : "Addverb",
     saveUninitialized : false,
     resave : false
 }));
@@ -58,7 +58,16 @@ app.use((req, res, next) => {
 app.use(userRoutes);
 app.use(adminRoutes);
 app.use(authRoutes);
-app.use(deleteImage)
+//app.use(deleteImage)
+
+function deleteImage(imagePath, next) {
+    fs.unlink(imagePath, (err) => {
+      if (err) {
+         console.log("Failed to delete image at delete profile");
+         return next(err);
+      }
+  });
+}
 
 app.listen(3000, () =>{
    console.log(`LMS server is running at: http://localhost:3000`); 
