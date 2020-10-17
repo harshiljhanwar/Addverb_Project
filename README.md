@@ -20,7 +20,7 @@ Campus Entry Control System
 ## Install dependencies
 Open command line tools at application file and run following npm command or just look at `package.json` file to know the dependencies.
 
-`npm install passport passport-local passport-local-mongoose body-parser connect-flash ejs express express-santizer express-session method-override mongoose fs path --save`
+`npm install passport passport-local passport-local-mongoose body-parser connect-flash ejs express express-sanitizer express-session method-override mongoose fs path --save`
 
 #### Install dev dependencies if needed
 `npm install nodemon faker --save-dev`
